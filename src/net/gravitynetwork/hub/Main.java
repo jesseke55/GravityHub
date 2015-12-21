@@ -62,6 +62,7 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     private void initCommands(){
+        getCommand("gravityhub").setExecutor(this);
     }
 
     private void initCONFIG(){
