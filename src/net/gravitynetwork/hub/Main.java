@@ -3,6 +3,7 @@ package net.gravitynetwork.hub;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import net.gravitynetwork.hub.events.*;
+import net.gravitynetwork.hub.util.WorldDeleter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -34,7 +35,9 @@ public class Main extends JavaPlugin implements Listener {
     }
     public void onDisable(){
         plugin = null;
+        WorldDeleter.deleteWorld(Bukkit.getWorlds().get(0));
     }
+
     private void initEvents(){
         PluginManager pm = Bukkit.getPluginManager();
 
