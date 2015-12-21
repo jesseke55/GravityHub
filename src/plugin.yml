@@ -1,0 +1,7 @@
+name: GravityHub
+main: net.gravitynetwork.hub.Main
+version: 2.0
+commnads:
+  gravityhub:
+    usage: /<command>
+    description: Main hub command of Gravity Network
