@@ -5,13 +5,8 @@ import com.google.common.io.ByteStreams;
 import net.gravitynetwork.hub.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,7 +26,6 @@ public class Main extends JavaPlugin implements Listener {
     public void onEnable(){
         plugin = this;
 
-        initCommands();
         initCONFIG();
         initEvents();
         initWDL();
@@ -59,10 +53,6 @@ public class Main extends JavaPlugin implements Listener {
         pm.registerEvents(new Sneak(), this);
         pm.registerEvents(new JoinItems(), this);
         pm.registerEvents(this , this);
-    }
-
-    private void initCommands(){
-        getCommand("gravityhub").setExecutor(this);
     }
 
     private void initCONFIG(){
@@ -114,58 +104,5 @@ public class Main extends JavaPlugin implements Listener {
             player.sendPluginMessage(this, "WDL|CONTROL", out.toByteArray());
         });
     }
-
-
-    @EventHandler
-    public void onPreCmd(PlayerCommandPreprocessEvent e){
-        if (e.getMessage().startsWith("/clear") || e.getMessage().startsWith("clear")) {
-            e.setCancelled(true);
-            e.getPlayer().performCommand("gravityhub clear");
-        }
-        if (e.getMessage().startsWith("/ci") || e.getMessage().startsWith("ci")) {
-            e.setCancelled(true);
-            e.getPlayer().performCommand("gravityhub clear");
-        }
-        if (e.getMessage().startsWith("/clearinventory") || e.getMessage().startsWith("clearinventory")) {
-            e.setCancelled(true);
-            e.getPlayer().performCommand("gravityhub clear");
-        }
-        if (e.getMessage().startsWith("/clearinv") || e.getMessage().startsWith("clearinv")) {
-            e.setCancelled(true);
-            e.getPlayer().performCommand("gravityhub clear");
-        }
-        if (e.getMessage().startsWith("/eclear") || e.getMessage().startsWith("eclear")) {
-            e.setCancelled(true);
-            e.getPlayer().performCommand("gravityhub clear");
-        }
-
-
-}
-
-
-    public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args){
-
-        if(cmd.getName().equalsIgnoreCase("gravityhub")){
-
-            if(args.length ==0){
-                sender.sendMessage(ChatColor.RED + "You must enter a argument!");
-            }
-            else if(args.length ==1){
-                if (args[0].equalsIgnoreCase("reload")){
-                    reloadConfig();
-                    sender.sendMessage(ChatColor.GREEN + "The config has been reloaded!");
-                }
-                else if(args[0].equalsIgnoreCase("clear")){
-                    Player p = (Player)sender;
-                    new JoinItems().giveItems(p);
-
-                }
-            }
-
-        }
-
-
-        return true;
-    }
-
+    
 }
