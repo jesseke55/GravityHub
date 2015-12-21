@@ -104,5 +104,5 @@ public class Main extends JavaPlugin implements Listener {
             player.sendPluginMessage(this, "WDL|CONTROL", out.toByteArray());
         });
     }
-    
+
 }
